@@ -101,7 +101,8 @@ case class Location(_package: String,
                     classType: ClassType,
                     method: String)
   extends java.io.Serializable {
-  val fqn = (_package + ".").replace("<empty>.", "") + _class
+  val fqn = if (_package == "<empty>") "_root_"
+    else (_package + ".").replace("<empty>.", "") + _class
 }
 
 trait CoverageMetrics {
